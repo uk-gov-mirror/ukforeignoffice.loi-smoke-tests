@@ -19,8 +19,8 @@ test('Document eligibility checker test', async t =>
         .click('#sign-in-link')
 
         .expect(Selector('.heading-xlarge').innerText).eql('Sign in')
-        .typeText('#email', config.settings.test_username)
-        .typeText('#password', config.settings.test_password)
+        .typeText('#email', config.settings.existing_account_username)
+        .typeText('#password', config.settings.existing_account_password)
         .click('#sign-in-button')
 
         //access account settings

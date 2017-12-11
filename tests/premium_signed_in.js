@@ -21,8 +21,8 @@ test('Should complete premium signed in applications', async t => {
         .click('#continue-button')
 
         .expect(Selector('.heading-xlarge').innerText).eql('Sign in')
-        .typeText('#email', config.settings.test_username)
-        .typeText('#password', config.settings.test_password)
+        .typeText('#email', config.settings.existing_account_username)
+        .typeText('#password', config.settings.existing_account_password)
         .click('#sign-in-button')
 
         .expect(Selector('.heading-xlarge').innerText).eql('Choose a service')
