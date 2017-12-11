@@ -30,14 +30,12 @@ test('Should complete postal not signed in applications', async t => {
         .click('#degree-certificate-uk-div > fieldset > fieldset > div > label:nth-child(3)')
         .click('#birth-certificate-div > fieldset > fieldset > div > label')
         .click('#NextBtn')
-
         .expect(Selector('.heading-xlarge').innerText).eql('Your details')
         .typeText('#first-name', 'Testy')
         .typeText('#last-name', 'McTest')
         .typeText('#phone','01234567890')
         .click('#email-question > fieldset > label:nth-child(3)')
         .click('#NextBtn')
-
         .expect(Selector('.heading-xlarge').innerText).eql('Return address details')
         .click('#is-uk > div:nth-child(1) > fieldset > label:nth-child(2)')
         .click('#is-uk > div:nth-child(2) > button')
@@ -53,12 +51,12 @@ test('Should complete postal not signed in applications', async t => {
         .click('#is-uk > div:nth-child(1) > fieldset > label:nth-child(3)')
         .click('#is-uk > div:nth-child(2) > button')
         .typeText('#organisation', 'Kainos')
-        .typeText('#house_name', '21')
-        .typeText('#street', 'Spui')
-        .typeText('#town', 'Amsterdam')
-        .typeText('#postcode', '1012 WX')
+        .typeText('#house_name', '31')
+        .typeText('#street', 'Stras')
+        .typeText('#town', 'Alsfeld')
+        .typeText('#postcode', '1012QK')
         .click('#country')
-        .click('#country > option:nth-child(143)')
+        .click('#country > option:nth-child(2)')
         .click('#NextBtn')
 
 
