@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import { ClientFunction } from 'testcafe';
 
 const config = require("../config/settings");
 
@@ -20,14 +21,11 @@ test('Should complete postal not signed in applications', async t => {
         .click('#check_documents')
 
         .expect(Selector('.heading-xlarge').innerText).eql('Select all your documents')
-        .click('#document-search-top-searches > div > a:nth-child(2)')
-        .click('#add_221')
         .click('#document-search-top-searches > div > a:nth-child(3)')
         .click('#add_201')
         .click('#NextBtn')
 
         .expect(Selector('.heading-xlarge').innerText).eql('Confirm your document format')
-        .click('#degree-certificate-uk-div > fieldset > fieldset > div > label:nth-child(3)')
         .click('#birth-certificate-div > fieldset > fieldset > div > label')
         .click('#NextBtn')
         .expect(Selector('.heading-xlarge').innerText).eql('Your details')
@@ -101,14 +99,14 @@ test('Should complete postal not signed in applications', async t => {
         .click('#card\\2e expiryMonth')
         .click('#card\\2e expiryMonth > option:nth-child(9)')
         .click('#card\\2e expiryYear')
-        .click('#card\\2e expiryYear > option:nth-child(3)')
+        .click('#card\\2e expiryYear > option:nth-child(2)')
         .typeText('#card\\2e cvcCode','737')
         .click('#mainSubmit')
 
         .expect(Selector('#stageheader').innerText).eql('Step 3: Please review and complete your payment')
-        .expect(Selector('#pmcontent > table > tbody > tr:nth-child(3) > td.b').innerText).contains('You are paying GBP 60.00 with')
+        .expect(Selector('#pmcontent > table > tbody > tr:nth-child(3) > td.b').innerText).contains('You are paying GBP 30.00 with')
         .click('#mainSubmit')
 
-        .expect(Selector('#content > div:nth-child(5) > h2').innerText).eql('What to do next')
+        .expect(Selector('#content').innerText).contains('Print')
 
 });

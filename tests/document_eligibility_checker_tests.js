@@ -7,7 +7,7 @@ fixture `Document eligibility checker test`
 
 
 //then create a test and place your code there
-test('Document eligibility checker test', async t =>
+test('Should search and check various docs in the eligibility checker', async t =>
 {
     await
     t
@@ -66,27 +66,28 @@ test('Document eligibility checker test', async t =>
 
     //check logic for certification
         .click('#doc_search_field')
-        .typeText('#doc_search_field','degree', { replace: true })
+        .typeText('#doc_search_field','home', { replace: true })
         .click('#doc_search_button')
-        .click('#add_221')
+        .click('#add_237')
         .click('#NextBtn')
 
         .expect(Selector('.heading-xlarge').innerText).eql('Confirm your document format')
+
     //original certificate check
-        .click('#docid_221_1')
+        .click('#docid_237_1')
         .click('#NextBtn')
         .expect(Selector('.heading-xlarge').innerText).eql('Your details')
         .click('#content > div.inner_header.no-user-signed-in > a')
 
     //check logic for needs certification
-        .click('#docid_221_2')
+        .click('#docid_237_2')
         .click('#NextBtn')
         .expect(Selector('.heading-xlarge').innerText).eql('Confirm your document is certified')
 
     //check logic, customer has not certified
-        .click('#\\32 21-no')
+        .click('#\\32 37-no')
         .click('#NextBtn')
-        .expect(Selector('.heading-xlarge').innerText).eql('Get your document certified')
+        .expect(Selector('#content > h1').innerText).eql('Get your document certified')
 
     //add/remove/update documents and numbers
         .click('#content > div.inner_header.no-user-signed-in.noPrint > a')
@@ -105,9 +106,8 @@ test('Document eligibility checker test', async t =>
         .expect(Selector('#basket-table > thead > tr > th:nth-child(2)').innerText).eql('Quantity (1)')
 
     //update
-        .click('#\\32 21')
-        .typeText('#\\32 21','5', { replace: true })
-        //.click('#doc_search_button')
+        .click('#\\32 37')
+        .typeText('#\\32 37','5', { replace: true })
         .expect(Selector('#basket-table > thead > tr > th:nth-child(2)').innerText).eql('Quantity (5)')
 
     //check zero results page category links
