@@ -7,8 +7,5 @@ export APP_URL="http://localhost:1337"
 export EXISTING_ACCOUNT_USERNAME=""
 export EXISTING_ACCOUNT_PASSWORD=""
 
-#Details of an account to be created
-export NEW_ACCOUNT_USERNAME=""
-export NEW_ACCOUNT_PASSWORD=""
-
-testcafe "firefox" tests/*.js
+#run tests in firefox headless mode, ignore js errors (-e), with screenshots (-S) which save to this directory (-s .)
+testcafe "firefox:headless" tests/happy_path.js -e -S -s .
