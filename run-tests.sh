@@ -4,8 +4,6 @@
 export APP_URL="http://localhost:1337"
 
 #Basic auth
-export BASIC_AUTH_USERNAME=
-export BASIC_AUTH_PASSWORD=
 export BASIC_AUTH_USERNAME=""
 export BASIC_AUTH_PASSWORD=""
 
