@@ -3,7 +3,11 @@ import { Selector } from 'testcafe';
 const config = require("../config/settings");
 
 fixture `MK Dropoff application`
-    .page(config.settings.app_url);
+    .page(config.settings.app_url)
+    .httpAuth({
+        username: config.settings.basic_auth_username,
+        password: config.settings.basic_auth_password
+    });
 
 
 //then create a test and place your code there

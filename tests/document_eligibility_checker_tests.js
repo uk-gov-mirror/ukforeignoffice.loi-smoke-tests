@@ -3,7 +3,11 @@ import { Selector } from 'testcafe';
 const config = require("../config/settings");
 
 fixture `Document eligibility checker tests`
-    .page(config.settings.app_url);
+    .page(config.settings.app_url)
+    .httpAuth({
+        username: config.settings.basic_auth_username,
+        password: config.settings.basic_auth_password
+    });
 
 
 
