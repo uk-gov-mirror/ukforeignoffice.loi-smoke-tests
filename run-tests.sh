@@ -6,6 +6,8 @@ export APP_URL="http://localhost:1337"
 #Basic auth
 export BASIC_AUTH_USERNAME=
 export BASIC_AUTH_PASSWORD=
+export BASIC_AUTH_USERNAME=""
+export BASIC_AUTH_PASSWORD=""
 
 #Details of an already existing account used to sign-in
 export EXISTING_ACCOUNT_USERNAME=""
