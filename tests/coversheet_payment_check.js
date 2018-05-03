@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 const config = require("../config/settings");
 
-fixture `Coversheet payment check`
+fixture `Cover sheet payment check`
     .page(config.settings.app_url)
     .httpAuth({
         username: config.settings.basic_auth_username,
@@ -11,7 +11,7 @@ fixture `Coversheet payment check`
 
 
 //then create a test and place your code there
-test('Should complete a standard applications ensuring that the user paid ', async t => {
+test('Shouldn\'t be able to browse to the print cover sheet without paying first', async t => {
     await t
 
         .expect(Selector('#content > h1').innerText).eql('Get your document legalised')
