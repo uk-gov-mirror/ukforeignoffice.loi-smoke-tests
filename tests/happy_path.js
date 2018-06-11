@@ -4,18 +4,13 @@ const config = require("../config/settings");
 
 fixture `Happy path test`
     .page(config.settings.app_url)
-    .httpAuth({
-        username: config.settings.basic_auth_username,
-        password: config.settings.basic_auth_password
-    });
-
  
 //then create a test and place your code there
 test('Should complete the happy path', async t => {
     await t
 
-        .expect(Selector('#content > h1').innerText).eql('Get your document legalised')
-        .click('#start')
+        .expect(Selector('#content > header > div > h1').innerText).eql('Get your document legalised')
+        .click('#get-started > a')
 
         .expect(Selector('.heading-xlarge').innerText).eql('Choose a service')
         .click('#standard-service')
