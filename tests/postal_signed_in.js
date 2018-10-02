@@ -73,9 +73,9 @@ test('Should complete postal signed in applications', async t =>
         .typeText('#card\\2e cardNumber','5555555555554444')
         .typeText('#card\\2e cardHolderName','Mr Test')
         .click('#card\\2e expiryMonth')
-        .click('#card\\2e expiryMonth > option:nth-child(9)')
+        .click('#card\\2e expiryMonth > option:nth-child(11)')
         .click('#card\\2e expiryYear')
-        .click('#card\\2e expiryYear > option:nth-child(2)')
+        .click('#card\\2e expiryYear > option:nth-child(4)')
         .typeText('#card\\2e cvcCode','737')
         .click('#mainSubmit')
 
