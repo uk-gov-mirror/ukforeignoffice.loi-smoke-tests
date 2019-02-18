@@ -53,6 +53,14 @@ test('Should complete the happy path', async t => {
         .click('#legend_postage_available > fieldset > div.column-two-thirds > label:nth-child(1)')
         .click('#NextBtn')
 
+        .expect(Selector('.heading-xlarge').innerText).eql('About your documents')
+        .click('#about-docs > div:nth-child(1) > fieldset > label:nth-child(2)')
+        .click('#NextBtn')
+
+        .expect(Selector('.heading-xlarge').innerText).eql('About your application')
+        .click('#residency > div:nth-child(1) > fieldset > label:nth-child(2)')
+        .click('#NextBtn')
+
         .expect(Selector('.heading-xlarge').innerText).eql('Additional information')
         .click('#additional_info > div:nth-child(2) > fieldset > label:nth-child(3)')
         .click('#NextBtn')
