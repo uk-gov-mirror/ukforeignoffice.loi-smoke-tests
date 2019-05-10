@@ -94,7 +94,7 @@ test('Should complete the happy path', async t => {
         .typeText('#card\\.cardHolderName', 'Test')
 
         .click(monthSelect)
-        .click(monthOption.withText('11'))
+        .click(monthOption.withText('10'))
         .click(yearSelect)
         .click(yearOption.withText('3'))
         .typeText('#card\\.cvcCode', '737')
@@ -103,7 +103,6 @@ test('Should complete the happy path', async t => {
         .expect(Selector('#content > h1').innerText).eql('Pay for your application')
         .expect(Selector('#stageheader').innerText).eql('Step 3: Please review and complete your payment')
         .click('#mainSubmit')
-
 
 
 
