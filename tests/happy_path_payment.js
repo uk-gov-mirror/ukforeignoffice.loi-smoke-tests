@@ -9,7 +9,11 @@ fixture `Happy path test`
         password: config.settings.basic_auth_password
     });
 
- 
+const monthSelect = Selector('#card\\.expiryMonth')
+const yearSelect = Selector('#card\\.expiryYear')
+const monthOption = monthSelect.find('option')
+const yearOption = yearSelect.find('option')
+
 //then create a test and place your code there
 test('Should complete the happy path', async t => {
     await t
@@ -79,6 +83,29 @@ test('Should complete the happy path', async t => {
 
 
         .expect(Selector('.heading-xlarge').innerText).eql('Pay for your application')
+        .click('#content > div.container > div.intro.column-two-thirds > form > div > button')
+
+        .expect(Selector('#content > h1').innerText).eql('Pay for your application')
+        .click('#paymentMethods > li:nth-child(3) > input')
+
+
+        .expect(Selector('#content > h1').innerText).eql('Pay for your application')
+        .typeText('#card\\.cardNumber', '5555 5555 5555 4444')
+        .typeText('#card\\.cardHolderName', 'Test')
+
+        .click(monthSelect)
+        .click(monthOption.withText('11'))
+        .click(yearSelect)
+        .click(yearOption.withText('3'))
+        .typeText('#card\\.cvcCode', '737')
+        .click('#mainSubmit')
+
+        .expect(Selector('#content > h1').innerText).eql('Pay for your application')
+        .expect(Selector('#stageheader').innerText).eql('Step 3: Please review and complete your payment')
+        .click('#mainSubmit')
+
+
+
 
 
 
