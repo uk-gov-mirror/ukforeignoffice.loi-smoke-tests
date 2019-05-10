@@ -77,8 +77,32 @@ test('Should complete the happy path', async t => {
         .click('#content > form > div > div:nth-child(4) > fieldset > label')
         .click('#content > form > div > div:nth-child(5) > button')
 
+
         .expect(Selector('.heading-xlarge').innerText).eql('Pay for your application')
         .click('#content > div.container > div.intro.column-two-thirds > form > div > button')
 
         .expect(Selector('#content > h1').innerText).eql('Pay for your application')
+        .click('#paymentMethods > li:nth-child(3) > input')
+
+        .expect(Selector('#content > h1').innerText).eql('Pay for your application')
+        .typeText('#card\\.cardNumber', '5555 5555 5555 4444')
+        .typeText('#card\\.cardHolderName', 'Test')
+        .typeText('#card\\.expiryMonth', '10')
+        .typeText('#card\\.expiryYear', '2020')
+        .typeText('#card\\.cvcCode', '737')
+        .click('#mainSubmit')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
