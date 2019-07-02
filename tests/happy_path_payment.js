@@ -1,8 +1,8 @@
-import { Selector } from 'testcafe';
+import {Selector} from 'testcafe';
 
 const config = require("../config/settings");
 
-fixture `Happy path test`
+fixture`Happy path test`
     .page(config.settings.app_url)
     .httpAuth({
         username: config.settings.basic_auth_username,
@@ -10,8 +10,9 @@ fixture `Happy path test`
     });
 
 const monthSelect = Selector('#card\\.expiryMonth')
-const yearSelect = Selector('#card\\.expiryYear')
 const monthOption = monthSelect.find('option')
+
+const yearSelect = Selector('#card\\.expiryYear')
 const yearOption = yearSelect.find('option')
 
 //then create a test and place your code there
@@ -30,7 +31,7 @@ test('Should complete the happy path', async t => {
         .expect(Selector('.heading-xlarge').innerText).eql('Your details')
         .typeText('#first-name', 'Testy')
         .typeText('#last-name', 'McTest')
-        .typeText('#phone','01234567890')
+        .typeText('#phone', '01234567890')
         .click('#email-question > fieldset > label:nth-child(3)')
         .click('#NextBtn')
 
@@ -96,28 +97,12 @@ test('Should complete the happy path', async t => {
         .click(monthSelect)
         .click(monthOption.withText('10'))
         .click(yearSelect)
-        .click(yearOption.withText('3'))
+        .click(yearOption.withText('2020'))
         .typeText('#card\\.cvcCode', '737')
         .click('#mainSubmit')
-
-        .expect(Selector('#content > h1').innerText).eql('Pay for your application')
-        .expect(Selector('#stageheader').innerText).eql('Step 3: Please review and complete your payment')
+        .expect(Selector('#pmcontent > h2').innerText).eql('Step 3: Please review and complete your payment')
         .click('#mainSubmit')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        .expect(Selector('#content > .form-group > h2').innerText).eql('What to do next')
 
 });
