@@ -21,7 +21,7 @@ test('Should complete the happy path', async t => {
         .expect(Selector('.heading-xlarge').innerText).eql('Your details')
         .typeText('#first-name', 'Testy')
         .typeText('#last-name', 'McTest')
-        .typeText('#phone','01234567890')
+        .typeText('#telephone','01234567890')
         .click('#email-question > fieldset > label:nth-child(3)')
         .click('#NextBtn')
 
