@@ -10,12 +10,6 @@ shared_examples_for "standard happy path" do
 
   it "confirms app is functioning correctly" do
     visit '/select-service'
-
-    # select-service
-    page.should have_content('Choose a service')
-    page.should have_content('Standard service')
-    page.should have_content('Premium service')
-    click_on 'Start a standard application'
 	  
 	# choose-documents-or-skip
 	page.should have_content('Check if documents can be legalised')
