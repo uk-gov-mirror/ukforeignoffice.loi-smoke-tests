@@ -20,7 +20,7 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.15)
       unf (>= 0.0.5, < 1.0.0)
-    ffi (1.9.3)
+    ffi (1.12.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     launchy (2.4.1)
