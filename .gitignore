@@ -1,9 +1,5 @@
-# Screenshots #
-###################
-screenshot_*
-
-
 # idea #
 ###################
 .idea*
+node_modules
 
