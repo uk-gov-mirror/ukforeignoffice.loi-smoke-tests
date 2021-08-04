@@ -29,7 +29,7 @@ test('Premium journey is successful', async () => {
     try {
 
         //select-service page
-        await page.goto(settings.url + settings.port + '/select-service')
+        await page.goto(settings.url + '/select-service')
         const selectServiceTitle = await page.$eval('#content > h1', e => e.innerHTML)
         expect(selectServiceTitle).toBe('Choose a service')
         await page.click('#sign-in-link')
@@ -77,9 +77,9 @@ test('Premium journey is successful', async () => {
 
         await browser.close()
 
-    } catch {
+    } catch (error){
         console.log(error);
     } finally {
         await browser.close();
     }
-}, 10000)
+}, 60000)

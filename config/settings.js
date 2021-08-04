@@ -1,7 +1,6 @@
 var configs = {
     headless: false,
     url: '<site-url>',
-    port: '<port>',
     accountUsername: '<account-username>',
     accountPassword: '<account-password>',
     basicAuthUsername: '<basic-auth-username>',
