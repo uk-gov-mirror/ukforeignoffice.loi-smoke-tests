@@ -4,7 +4,8 @@ var configs = {
     accountUsername: '<account-username>',
     accountPassword: '<account-password>',
     basicAuthUsername: '<basic-auth-username>',
-    basicAuthPassword: '<basic-auth-password>'
+    basicAuthPassword: '<basic-auth-password>',
+    testTimeout: 10000
 }
 
 module.exports = configs;

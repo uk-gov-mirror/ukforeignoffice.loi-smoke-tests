@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const settings = require('../config/settings')
 
-test('Standard journey is successful', async () => {
+test('Standard journey is successful', async (done) => {
     let browser = await puppeteer.launch({
         headless: settings.headless,
         defaultViewport: null,
@@ -21,6 +21,7 @@ test('Standard journey is successful', async () => {
         }
     });
 
+    // Basic Auth
     await page.authenticate({
         'username': settings.basicAuthUsername,
         'password': settings.basicAuthPassword
@@ -123,10 +124,11 @@ test('Standard journey is successful', async () => {
         expect(resultText).toContain('Total amount: £35.50 for 1 document')
 
         await browser.close()
+        done()
 
     } catch (error){
-        console.log(error);
+        done(error);
     } finally {
         await browser.close();
     }
-}, 60000)
+}, settings.testTimeout)
