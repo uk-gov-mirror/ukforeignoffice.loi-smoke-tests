@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const settings = require('../config/settings')
 
-test('Premium journey is successful', async () => {
+test('Happy path is successful', async () => {
     let browser = await puppeteer.launch({
         headless: settings.headless,
         defaultViewport: null,
@@ -33,26 +33,69 @@ test('Premium journey is successful', async () => {
         await page.goto(settings.url + '/select-service')
         const selectServiceTitle = await page.$eval('#content > h1', e => e.innerHTML)
         expect(selectServiceTitle).toBe('Choose a service')
-        await page.click('#sign-in-link')
+        await page.click('#standard-service')
 
-        //sign in page
-        await page.waitForSelector('#email')
-        await page.type('input[name=email]', settings.accountUsername)
-        await page.type('input[name=password]', settings.accountPassword)
-        await page.click('#sign-in-button')
+        //choose-documents
+        await page.waitForSelector('#skip_check')
+        await page.click('#skip_check')
 
-        //select-service page again
-        await page.waitForSelector('#premium-service')
-        await page.click('#premium-service')
+        //your-basic-details
+        await page.waitForSelector('#NextBtn')
+        await page.type('#first_name', 'Hugh')
+        await page.type('#last_name', 'Blow')
+        await page.type('#telephone', '02087123987')
+        await page.type('#mobileNo', '07754812309')
+        await page.click('#radio-indent-2')
+        await page.click('#NextBtn')
 
-        //business-document-quantity
+        //your-main-address-details
+        await page.waitForSelector('#radio-yes')
+        await page.click('#radio-yes')
+        await page.click('#is-uk > div:nth-child(2) > button')
+
+        //your-main-address-uk
+        await page.waitForSelector('#find-postcode')
+        await page.type('#find-postcode', 'BT71NT')
+        await page.click('#find-address')
+        await page.waitForSelector('#address-list-box')
+        await page.click('#address-list-box')
+        await page.select('#address-list-box', '0')
+        await page.waitForSelector('#NextBtn')
+        await page.click('#NextBtn')
+
+        //alternative-address
+        await page.waitForSelector('#radio-yes')
+        await page.click('#radio-yes')
+        await page.click('#is-same > div:nth-child(2) > button')
+
+        //how-many-documents
         await page.waitForSelector('#documentCount')
         await page.type('#documentCount', '1')
         await page.click('#NextBtn')
 
-        ///business-additional-information
-        await page.waitForSelector('#customer_ref')
+        //postage-send-options
+        await page.waitForSelector('#send_0')
+        await page.click('#send_0')
         await page.click('#NextBtn')
+
+        //postage-return-options
+        await page.waitForSelector('#return_1')
+        await page.click('#return_1')
+        await page.click('#NextBtn')
+
+        //additional-information
+        await page.waitForSelector('#NextBtn')
+        await page.click('#radio-feedback-no')
+        await page.click('#NextBtn')
+
+        //review-summary
+        await page.waitForSelector('#content > a')
+        await page.click('#content > a')
+
+        //declaration
+        await page.waitForSelector('#all_info_correct')
+        await page.click('#all_info_correct')
+        await page.click('#content > form > div > div:nth-child(4) > button')
 
         //submit-payment
         await page.waitForSelector('#content > div.container > div.intro.column-two-thirds > form > div > button')
@@ -74,7 +117,7 @@ test('Premium journey is successful', async () => {
         //submit-application
         await page.waitForSelector('#content > div:nth-child(4) > div > h1')
         const resultText = await page.$eval('#content > div:nth-child(4) > div > h1', e => e.innerHTML)
-        await expect(resultText).toContain('Total amount: £75.00 for 1 document')
+        await expect(resultText).toContain('Total amount: £35.50 for 1 document')
 
         await browser.close()
 
