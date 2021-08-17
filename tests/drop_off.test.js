@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const settings = require('../config/settings')
 
-test('Drop off journey is successful', async (done) => {
+test('Drop off journey is successful', async () => {
     let browser = await puppeteer.launch({
         headless: settings.headless,
         defaultViewport: null,
@@ -74,13 +74,12 @@ test('Drop off journey is successful', async (done) => {
         //submit-application
         await page.waitForSelector('#content > div:nth-child(4) > div > h1')
         const resultText = await page.$eval('#content > div:nth-child(4) > div > h1', e => e.innerHTML)
-        expect(resultText).toContain('Total amount: £30.00 for 1 document')
+        await expect(resultText).toContain('Total amount: £30.00 for 1 document')
 
         await browser.close()
-        done()
 
     } catch (error){
-        done(error)
+        throw new Error(error)
     } finally {
         await browser.close();
     }
