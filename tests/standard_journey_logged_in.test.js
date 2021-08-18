@@ -109,18 +109,27 @@ test('Standard journey is successful', async () => {
         await page.waitForSelector('#content > div.container > div.intro.column-two-thirds > form > div > button')
         await page.click('#content > div.container > div.intro.column-two-thirds > form > div > button')
 
-        //smartpay
-        await page.waitForSelector('#paymentMethods > li:nth-child(3) > input')
-        await page.click('#paymentMethods > li:nth-child(3) > input')
-        await page.waitForSelector('#card\\.cardNumber')
-        await page.type('#card\\.cardNumber', '5555555555554444')
-        await page.type('#card\\.cardHolderName', 'MR TEST')
-        await page.type('#card\\.expiryMonth', '03')
-        await page.type('#card\\.expiryYear', '2030')
-        await page.type('#card\\.cvcCode', '737')
-        await page.click('#mainSubmit')
-        await page.waitForSelector('#mainSubmit')
-        await page.click('#mainSubmit')
+        //gov-pay-page-1
+        await page.waitForSelector('#submit-card-details')
+        await page.waitForSelector('#email')
+        await page.evaluate( () => document.getElementById("email").value = "")
+        await page.type('#card-no', '4444333322221111')
+        await page.type('#expiry-month', '03')
+        await page.type('#expiry-year', '30')
+        await page.type('#cvc', '111')
+        await page.type('#cardholder-name', 'MR TEST')
+        await page.type('#address-line-1', '4-6 Upper Crescent')
+        await page.type('#address-city', 'Belfast')
+        await page.type('#address-postcode', 'BT71NT')
+        await page.type('#email', 'test@email.com')
+        await page.click('#submit-card-details')
+        await page.waitForSelector('#email-uncorrected')
+        await page.click('#email-uncorrected')
+        await page.click('#submit-card-details')
+
+        //gov-pay-page-2
+        await page.waitForSelector('#confirm')
+        await page.click('#confirm')
 
         //submit-application
         await page.waitForSelector('#content > div:nth-child(4) > div > h1')
