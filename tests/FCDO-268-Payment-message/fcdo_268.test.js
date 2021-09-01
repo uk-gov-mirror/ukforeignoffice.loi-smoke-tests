@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const settings = require('../config/settings')
+const settings = require('../../config/settings')
 
 test('Happy path is successful', async () => {
     let browser = await puppeteer.launch({
@@ -102,26 +102,13 @@ test('Happy path is successful', async () => {
         await page.click('#content > form > div > div:nth-child(4) > button')
 
         //submit-payment
-        await page.waitForSelector('#content > div.container > div.intro.column-two-thirds > form > div > button')
-        await page.click('#content > div.container > div.intro.column-two-thirds > form > div > button')
+        await page.waitForSelector('#govuk-notification-banner-title')
+        const bannerHeadingText = await page.$eval('#govuk-notification-banner-title', e => e.innerHTML)
+        await expect(bannerHeadingText).toContain('Important')
 
-        //smartpay
-        await page.waitForSelector('#paymentMethods > li:nth-child(3) > input')
-        await page.click('#paymentMethods > li:nth-child(3) > input')
-        await page.waitForSelector('#card\\.cardNumber')
-        await page.type('#card\\.cardNumber', '5555555555554444')
-        await page.type('#card\\.cardHolderName', 'MR TEST')
-        await page.type('#card\\.expiryMonth', '03')
-        await page.type('#card\\.expiryYear', '2030')
-        await page.type('#card\\.cvcCode', '737')
-        await page.click('#mainSubmit')
-        await page.waitForSelector('#mainSubmit')
-        await page.click('#mainSubmit')
-
-        //submit-application
-        await page.waitForSelector('#content > div:nth-child(4) > div > h1')
-        const resultText = await page.$eval('#content > div:nth-child(4) > div > h1', e => e.innerHTML)
-        await expect(resultText).toContain('Total amount: £35.50 for 1 document')
+        await page.waitForSelector('#content > div.container > div:nth-child(2) > div > div.govuk-notification-banner__content > p')
+        const bannerInnerText = await page.$eval('#content > div.container > div:nth-child(2) > div > div.govuk-notification-banner__content > p', e => e.innerHTML)
+        await expect(bannerInnerText).toContain('This service will change to a new payment provider during September 2021.')
 
         await browser.close()
 
