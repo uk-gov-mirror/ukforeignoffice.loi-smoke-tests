@@ -49,6 +49,10 @@ test('Standard journey is successful', async () => {
         await page.waitForSelector('#skip_check')
         await page.click('#skip_check')
 
+        //important-info page
+        await page.waitForSelector('#NextBtn')
+        await page.click('#NextBtn')
+
         //your-basic-details
         await page.waitForSelector('#NextBtn')
         await page.click('#NextBtn')

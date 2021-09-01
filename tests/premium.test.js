@@ -50,6 +50,10 @@ test('Premium journey is successful', async () => {
         await page.type('#documentCount', '1')
         await page.click('#NextBtn')
 
+        //important-info page
+        await page.waitForSelector('#NextBtn')
+        await page.click('#NextBtn')
+
         ///business-additional-information
         await page.waitForSelector('#customer_ref')
         await page.click('#NextBtn')
