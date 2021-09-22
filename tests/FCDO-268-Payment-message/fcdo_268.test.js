@@ -49,7 +49,8 @@ test('Happy path is successful', async () => {
         await page.type('#last_name', 'Blow')
         await page.type('#telephone', '02087123987')
         await page.type('#mobileNo', '07754812309')
-        await page.click('#radio-indent-2')
+        await page.type('#email', 'test@email.com')
+        await page.type('#confirm_email', 'test@email.com')
         await page.click('#NextBtn')
 
         //your-main-address-details
