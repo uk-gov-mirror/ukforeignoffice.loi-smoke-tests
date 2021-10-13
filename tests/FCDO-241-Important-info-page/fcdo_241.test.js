@@ -76,6 +76,14 @@ test('Standard journey is successful', async () => {
         await expect(medicalContent).toContain('If you are submitting a document that has been signed by a medical')
         //#endregion
 
+        //Verify continue works
+        await page.waitForSelector('#NextBtn');
+        await page.click('#NextBtn');
+
+        await page.waitForSelector('.heading-xlarge');
+        const yourDetailsHeading = await page.$eval('.heading-xlarge', x => x.innerHTML);
+        expect(yourDetailsHeading).toBe('Your details');
+        
         await browser.close()
 
     } catch (error){
