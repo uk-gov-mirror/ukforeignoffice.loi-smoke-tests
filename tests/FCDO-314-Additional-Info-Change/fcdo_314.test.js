@@ -68,7 +68,7 @@ test('Happy path is successful', async () => {
         await page.click('.intro > p:nth-child(8) > a:nth-child(1)')
 
         //additional-payments page
-        await page.goto(settings.url + '/additional-payments')
+        await page.waitForSelector('#content > h1');
         const additionalPaymentsTitle2 = await page.$eval('#content > h1', e => e.innerHTML)
         expect(additionalPaymentsTitle2).toBe('Make an additional payment for legalisation')
 
