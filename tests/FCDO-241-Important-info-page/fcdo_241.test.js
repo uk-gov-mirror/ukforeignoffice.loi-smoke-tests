@@ -58,6 +58,7 @@ test('Standard journey is successful', async () => {
         await page.waitForSelector('.back-to-previous');
         await page.click('.back-to-previous');
 
+        //choose documents page
         await page.waitForSelector('#skip_check')
         await page.click('#skip_check')
 
