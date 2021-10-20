@@ -40,19 +40,50 @@ test('Standard journey is successful', async () => {
         await page.waitForSelector('#skip_check')
         await page.click('#skip_check')
 
-        //important info page
+        //#region verify important info page
         await page.waitForSelector('#content > div.govuk-warning-text > strong')
-        const importantText = await page.$eval('#content > div.govuk-warning-text > strong', e => e.innerHTML)
+        var importantText = await page.$eval('#content > div.govuk-warning-text > strong', e => e.innerHTML)
         await expect(importantText).toContain('Please read the following information to prevent potential delays to your application.')
 
         await page.waitForSelector('#content > div.column-two-thirds > form > div:nth-child(1) > h2')
-        const medicalHeading = await page.$eval('#content > div.column-two-thirds > form > div:nth-child(1) > h2', e => e.innerHTML)
+        var medicalHeading = await page.$eval('#content > div.column-two-thirds > form > div:nth-child(1) > h2', e => e.innerHTML)
         await expect(medicalHeading).toContain('Medical Documents')
 
         await page.waitForSelector('#content > div.column-two-thirds > form > div:nth-child(1) > p')
-        const medicalContent = await page.$eval('#content > div.column-two-thirds > form > div:nth-child(1) > p', e => e.innerHTML)
+        var medicalContent = await page.$eval('#content > div.column-two-thirds > form > div:nth-child(1) > p', e => e.innerHTML)
         await expect(medicalContent).toContain('If you are submitting a document that has been signed by a medical')
+        //#endregion
 
+        // Go back and forth to verify backward and forward navigation works
+        await page.waitForSelector('.back-to-previous');
+        await page.click('.back-to-previous');
+
+        //choose documents page
+        await page.waitForSelector('#skip_check')
+        await page.click('#skip_check')
+
+        //#region verify important info page
+        await page.waitForSelector('#content > div.govuk-warning-text > strong')
+        var importantText = await page.$eval('#content > div.govuk-warning-text > strong', e => e.innerHTML)
+        await expect(importantText).toContain('Please read the following information to prevent potential delays to your application.')
+
+        await page.waitForSelector('#content > div.column-two-thirds > form > div:nth-child(1) > h2')
+        var medicalHeading = await page.$eval('#content > div.column-two-thirds > form > div:nth-child(1) > h2', e => e.innerHTML)
+        await expect(medicalHeading).toContain('Medical Documents')
+
+        await page.waitForSelector('#content > div.column-two-thirds > form > div:nth-child(1) > p')
+        var medicalContent = await page.$eval('#content > div.column-two-thirds > form > div:nth-child(1) > p', e => e.innerHTML)
+        await expect(medicalContent).toContain('If you are submitting a document that has been signed by a medical')
+        //#endregion
+
+        //Verify continue works
+        await page.waitForSelector('#NextBtn');
+        await page.click('#NextBtn');
+
+        await page.waitForSelector('.heading-xlarge');
+        const yourDetailsHeading = await page.$eval('.heading-xlarge', x => x.innerHTML);
+        expect(yourDetailsHeading).toBe('Your details');
+        
         await browser.close()
 
     } catch (error){
