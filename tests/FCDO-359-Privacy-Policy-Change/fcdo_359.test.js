@@ -46,14 +46,18 @@ test('Privacy Policy test is successful', async () => {
         await page.waitForSelector('.column-two-thirds > p:nth-child(22) > a:nth-child(1)')
         await page.click('.column-two-thirds > p:nth-child(22) > a:nth-child(1)')
 
+        let pages = await browser.pages()
+        let cookieDetailsPage = pages[pages.length - 1]
+
         //Verify GOV UK Pay Cookie link works
-        await page.waitForSelector('.column-two-thirds > ul:nth-child(16) > li:nth-child(1) > span:nth-child(1)')
-        await page.click('.column-two-thirds > ul:nth-child(16) > li:nth-child(1) > span:nth-child(1)')
+        await cookieDetailsPage.waitForSelector('#content > div.column-two-thirds > ul > li > span > a')
+        await cookieDetailsPage.click('#content > div.column-two-thirds > ul > li > span > a')
         
-        // const govUKPayCookieLink = await page.$x('/html/body/main/div[3]/ul/li/span/a')
-        
-        // const govUKPayHeader = await page.$eval('.govuk-header__product-name', e => e.innerHTML);
-        // expect(govUKPayHeader).toBe('Pay');
+        //Verify on GOV.UK Pay
+        pages = await browser.pages()
+        let govUKPay = pages[pages.length - 1]
+
+        await govUKPay.waitForSelector('body > div:nth-child(5) > div > ol > li:nth-child(3) > a')
 
         await browser.close()
 
