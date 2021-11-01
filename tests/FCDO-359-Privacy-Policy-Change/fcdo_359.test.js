@@ -58,6 +58,8 @@ test('Privacy Policy test is successful', async () => {
         let govUKPay = pages[pages.length - 1]
 
         await govUKPay.waitForSelector('body > div:nth-child(5) > div > ol > li:nth-child(3) > a')
+        const cookiesBreadcrumb = await govUKPay.$eval('body > div:nth-child(5) > div > ol > li:nth-child(3) > a', e => e.innerHTML)
+        expect(cookiesBreadcrumb).toBe('Cookies')
 
         await browser.close()
 
