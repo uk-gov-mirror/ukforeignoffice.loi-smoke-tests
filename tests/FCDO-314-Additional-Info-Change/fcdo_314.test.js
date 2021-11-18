@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const settings = require('../../config/settings')
 
-test('Happy path is successful', async () => {
+test('Additional payments confirmation page is successful', async () => {
     let browser = await puppeteer.launch({
         headless: settings.headless,
         defaultViewport: null,
