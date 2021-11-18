@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const settings = require('../../config/settings')
 
-test('Doc checker wording change is successful', async () => {
+test('Doc checker adoption doc wording change', async () => {
     let browser = await puppeteer.launch({
         headless: settings.headless,
         defaultViewport: null,
@@ -41,23 +41,18 @@ test('Doc checker wording change is successful', async () => {
         await page.click('#check_documents')
 
         //doc checker page
-        await page.waitForSelector('#document-search-top-searches > div > a:nth-child(2)')
-        await page.click('#document-search-top-searches > div > a:nth-child(2)')
-        await page.waitForSelector('#add_221')
-        await page.click('#add_221')
+        await page.waitForSelector('#doc_search_field')
+        await page.type('#doc_search_field', 'Adoption document')
+        await page.click('#doc_search_button')
+        await page.waitForSelector('#add_261')
+        await page.click('#add_261')
         await page.waitForSelector('#NextBtn')
         await page.click('#NextBtn')
 
         //confirm docs page
-        await page.waitForSelector('#docid_221_1')
-        await page.click('#docid_221_1')
         await page.waitForSelector('#NextBtn')
-        await page.click('#NextBtn')
-
-        //eligible page
-        await page.waitForSelector('#docid_221 > fieldset > ul:nth-child(3) > li:nth-child(2)')
-        const text = await page.$eval('#docid_221 > fieldset > ul:nth-child(3) > li:nth-child(2)', e => e.innerHTML)
-        await expect(text).toBe('an official of the British Council (only original certificates; please check with your local British Council first as this service is not available at all locations)')
+        const text = await page.$eval('#adoption_document-div > div > div:nth-child(3) > label', e => e.innerHTML)
+        await expect(text).toContain('Your original UK adoption certificate or certified copy from either the General Register Office (GRO) or local register office')
 
         await browser.close()
 

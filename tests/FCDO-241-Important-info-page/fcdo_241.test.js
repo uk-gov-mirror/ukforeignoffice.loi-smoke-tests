@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const settings = require('../../config/settings')
 
-test('Standard journey is successful', async () => {
+test('Important info page is successful', async () => {
     let browser = await puppeteer.launch({
         headless: settings.headless,
         defaultViewport: null,
