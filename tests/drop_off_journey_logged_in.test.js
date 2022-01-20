@@ -44,6 +44,7 @@ test('Drop off journey is successful', async () => {
         //select-service page again
         await page.waitForSelector('#dropoff-service')
         await page.click('#dropoff-service')
+        await page.click('#content > div.column-two-thirds > form > button')
 
         //business-document-quantity
         await page.waitForSelector('#documentCount')
