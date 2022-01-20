@@ -42,8 +42,9 @@ test('Standard journey is successful', async () => {
         await page.click('#sign-in-button')
 
         //select-service page again
-        await page.waitForSelector('#standard-service')
-        await page.click('#standard-service')
+        await page.waitForSelector('#choose-standard-service')
+        await page.click('#choose-standard-service')
+        await page.click('#content > div.column-two-thirds > form > button')
 
         //choose-documents
         await page.waitForSelector('#skip_check')
@@ -57,15 +58,14 @@ test('Standard journey is successful', async () => {
         await page.waitForSelector('#NextBtn')
         await page.click('#NextBtn')
 
-        //your-saved-address
-        await page.waitForSelector('#savedAddressID')
-        await page.click('#savedAddressID')
-        await page.click('#savedAddressDetailsForm > div > input')
-
-        //your-main-address-details
+        //your-main-address-details - Return address details - Is this address in the UK?
         await page.waitForSelector('#radio-yes')
         await page.click('#radio-yes')
         await page.click('#is-uk > div:nth-child(2) > button')
+
+        //your-saved-address
+        await page.waitForSelector('#find-address')
+        await page.click('#find-address')
 
         //your-main-address-uk
         await page.waitForSelector('#find-postcode')
