@@ -42,8 +42,9 @@ test('Premium journey is successful', async () => {
         await page.click('#sign-in-button')
 
         //select-service page again
-        await page.waitForSelector('#premium-service')
-        await page.click('#premium-service')
+        await page.waitForSelector('#choose-premium-service')
+        await page.click('#choose-premium-service')
+        await page.click('#content > div.column-two-thirds > form > button')
 
         //business-document-quantity
         await page.waitForSelector('#documentCount')
