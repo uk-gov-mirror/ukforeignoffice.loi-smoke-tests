@@ -39,8 +39,9 @@ test('Additional payments confirmation page is successful', async () => {
         await page.click('#NextBtn')
 
         //submit-additional-payment - prepare to pay
-        await page.waitForSelector('button.govuk-button')
-        await page.click('button.govuk-button')
+        await page.waitForSelector('#content > div.container > div > form > div > button')
+        await page.click('#content > div.container > div > form > div > button')
+        
 
         //gov-pay-page-1 - card_details
         await page.waitForSelector('#submit-card-details')
